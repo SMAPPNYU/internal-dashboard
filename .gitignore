@@ -1,4 +1,7 @@
 .ipynb_checkpoints/
 *log
 *.pyc
+spark-warehouse/
+metastore_db/
+
 
