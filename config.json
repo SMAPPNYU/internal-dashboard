@@ -1,0 +1,8 @@
+{
+    "DASHBOARD_USER_NAME": "csmap_user",
+    "DASHBOARD_USER_PASSWORD": "csmap",
+    "DASHBOARD_DIRECTORY_PREFIX": "dashboard",
+    "DATABASE_NAME": "tweet",
+    "TABLE_NAME": "covid_tweet",
+    "KEYWORD": ["new york", "nyc", "manhattan"]
+}
