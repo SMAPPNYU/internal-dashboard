@@ -34,11 +34,8 @@ cd /home/$USER/dashboard
 singularity instance start --bind ${PWD}/superset-data:/app/superset_home --bind ${PWD}/superset_config.py:/etc/superset/superset_config.py  docker://apache/superset superset
 singularity exec instance://superset superset fab create-admin --username admin --firstname Superset  --lastname Admin --email admin@superset.com --password admin
 singularity exec instance://superset superset db upgrade
-singularity exec instance://superset superset load_examples
 singularity exec instance://superset superset init
 singularity instance stop superset
-
-#singularity instance start --bind ${PWD}/superset-data:/var/lib/superset --bind ${PWD}/superset_config.py:/etc/superset/superset_config.py  docker://amancevice/superset superset
 
 
 echo 'set up finish!'
