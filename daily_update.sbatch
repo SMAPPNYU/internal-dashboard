@@ -38,13 +38,14 @@ if [ "$SLURM_JOBTMP" != "" ]; then
 fi
 
 # write hostname to a globally shared files
-echo $(hostname) > /home/$USER/latest_hostname.txt
+echo $(hostname) > /home/$USER/decahose_visualization_setup/latest_hostname.txt
 
 cd /scratch/$USER
 singularity instance start --bind ${PWD}/redis-data:/data docker://redis redis redis-server
 singularity exec instance://redis nohup redis-server &
-singularity instance start --bind ${HOME} --bind ${PWD}/mysql/var/lib/mysql/:/var/lib/mysql --bind ${PWD}/mysql/run/mysqld:/run/mysqld ./mysql-8.0.22.sif mysql && singularity run instance://mysql
-singularity instance start --bind ${PWD}/superset-data:/var/lib/superset --bind ${PWD}/superset_config.py:/etc/superset/superset_config.py  docker://amancevice/superset superset
+nohup /share/apps/mysql/8.0.22/bin/mysqld &
+
+singularity instance start --bind ${PWD}/superset-data:/app/superset_home --bind ${PWD}/superset_config.py:/etc/superset/superset_config.py  docker://apache/superset superset
 singularity exec instance://superset nohup superset run -p 8088 --host=0.0.0.0 --with-threads --reload --debugger &
 
 echo 'Waiting for all instances to start...'

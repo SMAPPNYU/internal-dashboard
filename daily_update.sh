@@ -13,13 +13,14 @@ sleep 5
 ssh `cat /home/$USER/decahose_visualization_setup/latest_hostname.txt` 'singularity instance stop mysql'
 sleep 15
 
-# save previous latest_hostname
-mv /home/$USER/decahose_visualization_setup/latest_hostname.txt /home/$USER/decahose_visualization_setup/latest_hostname.txt.old
 
 # kill previous running job that hosts superset
 squeue -u $USER | grep `cat /home/$USER/decahose_visualization_setup/latest_hostname.txt | cut -d. -f1` | awk '{print $1}'| tail -n 1 | xargs scancel
 # squeue -u $USER | awk '{print $1}'| tail -n 1 | xargs scancel
 sleep 5
+
+# save previous latest_hostname
+mv /home/$USER/decahose_visualization_setup/latest_hostname.txt /home/$USER/decahose_visualization_setup/latest_hostname.txt.old
 
 # clear latest_hostname.txt file
 echo '' > latest_hostname.txt
