@@ -26,7 +26,7 @@ mv /home/$USER/decahose_visualization_setup/latest_hostname.txt /home/$USER/deca
 echo '' > latest_hostname.txt
 
 # submit today's sbatch job
-sbatch daily_update.sbatch
+sbatch daily_update.sbatch $1
 
 # identify the new hostname running the sbatch job
 latest_hostname=''
@@ -52,13 +52,14 @@ done
 echo "latest hostname is ---->"
 echo $latest_hostname
 
+exit 0
 # NOTE: port forwarding is optional, because each port can only be assigned to one user
 # kill previous job listening to 30001
-lsof -i -P  | grep 30001 | awk 'NR > 1 {print $2}' |  xargs kill -9
+#lsof -i -P  | grep 30001 | awk 'NR > 1 {print $2}' |  xargs kill -9
 
 # sleep for 3 seconds
-sleep 3
+#sleep 3
 
 # launch a new ssh port forwarding job listenting to 30001
-ssh $latest_hostname -Nf  -o ServerAliveInterval=60 -L 30001:127.0.0.1:8088
+#ssh $latest_hostname -Nf  -o ServerAliveInterval=60 -L 30001:127.0.0.1:8088
 

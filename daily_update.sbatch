@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=cpu_jupyter
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=10
 #SBATCH --mem=40GB
 #SBATCH --time=26:00:00
 
@@ -40,7 +40,7 @@ fi
 # write hostname to a globally shared files
 echo $(hostname) > /home/$USER/decahose_visualization_setup/latest_hostname.txt
 
-cd /scratch/$USER
+cd /scratch/$USER/dashboard
 singularity instance start --bind ${PWD}/redis-data:/data docker://redis redis redis-server
 singularity exec instance://redis nohup redis-server &
 nohup /share/apps/mysql/8.0.22/bin/mysqld &

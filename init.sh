@@ -29,16 +29,8 @@ rm save_pid.txt
 rm /home/$USER/create_table.sql
 
 
-echo 'set up superset...'
-cd /home/$USER/dashboard
-singularity instance start --bind ${PWD}/superset-data:/app/superset_home --bind ${PWD}/superset_config.py:/etc/superset/superset_config.py  docker://apache/superset superset
-singularity exec instance://superset superset fab create-admin --username admin --firstname Superset  --lastname Admin --email admin@superset.com --password admin
-singularity exec instance://superset superset db upgrade
-singularity exec instance://superset superset init
-singularity instance stop superset
-
-
 echo 'set up finish!'
 
 # schedule update with crontab
 # 0 22 * * * /home/$USER/decahose_visualization_setup/daily_update.sh $1
+(crontab -l ; echo "0 22 * * * /home/$USER/decahose_visualization_setup/daily_update.sh $1") | crontab
