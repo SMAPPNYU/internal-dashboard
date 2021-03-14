@@ -41,11 +41,16 @@ fi
 echo $(hostname) > /home/$USER/decahose_visualization_setup/latest_hostname.txt
 
 cd /scratch/$USER/dashboard
-singularity instance start --bind ${PWD}/redis-data:/data docker://redis redis redis-server
+
+# use a tag when pulling redis image?
+singularity instance start --bind ${PWD}/redis-data:/data docker://redis:6.2.1 redis redis-server
 singularity exec instance://redis nohup redis-server &
 nohup /share/apps/mysql/8.0.22/bin/mysqld &
 
 singularity instance start --bind ${PWD}/superset-data:/app/superset_home --bind ${PWD}/superset_config.py:/etc/superset/superset_config.py  docker://apache/superset superset
+# upgrade superset / because the current docker version might be different from the previous one
+singularity exec instance://superset superset db upgrade
+singularity exec instance://superset superset init
 singularity exec instance://superset nohup superset run -p 8088 --host=0.0.0.0 --with-threads --reload --debugger &
 
 echo 'Waiting for all instances to start...'

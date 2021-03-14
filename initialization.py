@@ -185,11 +185,11 @@ else:
 print('init superset...')
 cmd = """cd {};
 singularity instance start --bind {}/superset-data:/app/superset_home --bind {}/superset_config.py:/etc/superset/superset_config.py  docker://apache/superset superset;
-singularity exec instance://superset superset fab create-admin --username admin --firstname Superset  --lastname Admin --email admin@superset.com --password admin;
+singularity exec instance://superset superset fab create-admin --username {} --firstname Superset  --lastname Admin --email admin@superset.com --password {};
 singularity exec instance://superset superset db upgrade;
 singularity exec instance://superset superset init;
 singularity instance stop superset
-""".format(DASHBOARD_DIRECTORY, DASHBOARD_DIRECTORY, DASHBOARD_DIRECTORY)
+""".format(DASHBOARD_DIRECTORY, DASHBOARD_DIRECTORY, DASHBOARD_DIRECTORY, DASHBOARD_USER, DASHBOARD_USER_PASSWORD)
 print(cmd)
 
 proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
@@ -207,7 +207,7 @@ CREATE_TABLE_SQL = """
 CREATE DATABASE IF NOT EXISTS {};
 USE {};
 CREATE TABLE IF NOT EXISTS {} (
-  tweet_id VARCHAR(100), 
+  tweet_id VARCHAR(100) NOT NULL, 
   tweet_timestamp timestamp, 
   created_at VARCHAR(100), 
   is_deleted BIGINT, 
@@ -321,7 +321,8 @@ CREATE TABLE IF NOT EXISTS {} (
     reserved_3 TEXT(20),
     reserved_4 TEXT(20),
     reserved_5 TEXT(20),
-    yymmdd VARCHAR(10)
+    yymmdd VARCHAR(10),
+    PRIMARY KEY (tweet_id)
   ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 """.format(CONFIG['DATABASE_NAME'], 
            CONFIG['DATABASE_NAME'],
