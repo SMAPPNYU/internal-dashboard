@@ -1,9 +1,12 @@
 ### Initiate MySQL database, Superset database
 
-1. modify config.json
-2. in terminal, run ./init.sh CONFIG_FILE (do not forget to type the first dot, replace CONFIG_FILE with your config file)
-3. if there is any error, please reach out to be zc1245@nyu.edu
-4. now we can proceed to the user interface, connect with MySQL database, and create our first dashboard
+1. log in to greene cluster, then `cd /home/$USER`
+2. `git clone git@github.com:SMAPPNYU/internal-dashboard.git`
+3. `cd /home/$USER/internal-dashboard`
+4. modify `config.json`
+5. run `./init.sh CONFIG_FILE` (do not forget to type the first dot, replace CONFIG_FILE with your config file)
+6. if there is any error, please reach out to be zc1245@nyu.edu
+7. now we can proceed to the user interface, connect with MySQL database, and create our first dashboard
 
 ### Connet to Superset (the visualization tool)
 

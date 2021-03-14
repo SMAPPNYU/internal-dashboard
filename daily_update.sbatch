@@ -38,7 +38,7 @@ if [ "$SLURM_JOBTMP" != "" ]; then
 fi
 
 # write hostname to a globally shared files
-echo $(hostname) > /home/$USER/decahose_visualization_setup/latest_hostname.txt
+echo $(hostname) > /home/$USER/internal-dashboard/latest_hostname.txt
 
 cd /scratch/$USER/dashboard
 
@@ -56,7 +56,7 @@ singularity exec instance://superset nohup superset run -p 8088 --host=0.0.0.0 -
 echo 'Waiting for all instances to start...'
 sleep 30
 
-cd /home/$USER/decahose_visualization_setup/
+cd /home/$USER/internal-dashboard/
 
 # TODO: add CONFIG_FILE as an additional argument, e.g.: NB_ARGS=some_args
 CONFIG_FILE=$1 nohup /share/apps/anaconda3/2020.02/bin/jupyter nbconvert --to notebook --inplace --ExecutePreprocessor.timeout=7200 --execute daily_update.ipynb &

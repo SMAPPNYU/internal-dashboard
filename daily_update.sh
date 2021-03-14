@@ -1,26 +1,26 @@
 #!/bin/bash
 #source /home/$USER/.bash_profile
 
-cd /home/$USER/decahose_visualization_setup
+cd /home/$USER/internal-dashboard
 
 # gracefully shut down all services
-ssh `cat /home/$USER/decahose_visualization_setup/latest_hostname.txt` 'singularity instance stop superset'
+ssh `cat /home/$USER/internal-dashboard/latest_hostname.txt` 'singularity instance stop superset'
 sleep 5
 
-ssh `cat /home/$USER/decahose_visualization_setup/latest_hostname.txt` 'singularity instance stop redis'
+ssh `cat /home/$USER/internal-dashboard/latest_hostname.txt` 'singularity instance stop redis'
 sleep 5
 
-ssh `cat /home/$USER/decahose_visualization_setup/latest_hostname.txt` 'singularity instance stop mysql'
+ssh `cat /home/$USER/internal-dashboard/latest_hostname.txt` 'singularity instance stop mysql'
 sleep 15
 
 
 # kill previous running job that hosts superset
-squeue -u $USER | grep `cat /home/$USER/decahose_visualization_setup/latest_hostname.txt | cut -d. -f1` | awk '{print $1}'| tail -n 1 | xargs scancel
+squeue -u $USER | grep `cat /home/$USER/internal-dashboard/latest_hostname.txt | cut -d. -f1` | awk '{print $1}'| tail -n 1 | xargs scancel
 # squeue -u $USER | awk '{print $1}'| tail -n 1 | xargs scancel
 sleep 5
 
 # save previous latest_hostname
-mv /home/$USER/decahose_visualization_setup/latest_hostname.txt /home/$USER/decahose_visualization_setup/latest_hostname.txt.old
+mv /home/$USER/internal-dashboard/latest_hostname.txt /home/$USER/internal-dashboard/latest_hostname.txt.old
 
 # clear latest_hostname.txt file
 echo '' > latest_hostname.txt

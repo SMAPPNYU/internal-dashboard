@@ -13,7 +13,7 @@ module load mysql/8.0.22
 
 pip install --user mysql-connector-python
 
-cd /home/$USER/decahose_visualization_setup
+cd /home/$USER/internal-dashboard
 python initialization.py --config_file $1
 mysqld --initialize-insecure
 
@@ -32,5 +32,5 @@ rm /home/$USER/create_table.sql
 echo 'set up finish!'
 
 # schedule update with crontab
-# 0 22 * * * /home/$USER/decahose_visualization_setup/daily_update.sh $1
-(crontab -l ; echo "0 22 * * * /home/$USER/decahose_visualization_setup/daily_update.sh $1") | crontab
+# 0 22 * * * /home/$USER/internal-dashboard/daily_update.sh $1
+(crontab -l ; echo "0 22 * * * /home/$USER/internal-dashboard/daily_update.sh $1") | crontab
