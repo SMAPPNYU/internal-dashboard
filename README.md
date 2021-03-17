@@ -1,12 +1,14 @@
 ### How can this dashboard benefit my research?
 
-If your study social networks, chances are you might want to access and visualize tweets from a certain category or topic. CSMaP has access to decahose, which is a sample of 10% of all tweets.
+If your study social networks, chances are you might want to access and visualize tweets from a certain category or topic. CSMaP has access to Decahose, a 10% sample of all tweets.
 
-With minimal configuration, this repository will load tweets related to a given topic into a local MySQL database, it then create a dashboard using Superset (one of the most popular open-source visulization tool). Users can then write custom SQL queries, create a variety of charts, and group charts into coherent dashboard.
+With minimal configuration, this repository will load tweets related to a given keyword(s) from Decahose to a local MySQL database, it then create a dashboard using [Superset](https://superset.apache.org/). Users can then write custom SQL queries, create a variety of charts, and group charts into coherent dashboard.
 
-Since new tweets are added every day, the system also schedules a background job that reloads data every 24 hours. The overall systetm architecture is shown below.
+Since new tweets are added every day, the system also schedules a background job that loads new tweets every 24 hours. The overall systetm architecture is shown below.
 
-Be creative. This repository is intended as a starting point. _Note: If you encounter any problem during the set up, please contact Zhouhan, email: zc1245@nyu.edu_
+Be creative. This repository is intended as a starting point. 
+
+_Note: If you encounter any problem during the set up, please contact Zhouhan, email: zc1245@nyu.edu_
 ![System architecture](img/system-architecture.png)
 
 
