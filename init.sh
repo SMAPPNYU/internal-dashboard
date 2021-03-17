@@ -33,4 +33,16 @@ echo 'set up finish!'
 
 # schedule update with crontab
 # 0 22 * * * /home/$USER/internal-dashboard/daily_update.sh $1
-(crontab -l ; echo "0 22 * * * /home/$USER/internal-dashboard/daily_update.sh $1") | crontab
+
+firstString=$1
+secondString="_add_to_crontab.txt"
+FILE="${firstString/.json/$secondString}"
+if test -f "$FILE"; then
+    echo "$FILE exists."
+    echo "No need to update crontab"
+else 
+    echo "update crontab..."	 
+    echo "update crontab" > $FILE
+    echo `date` >> $FILE
+    (crontab -l ; echo "0 22 * * * source $HOME/.bash_profile; cd /home/$USER/internal-dashboard && ./daily_update.sh $1") | crontab
+fi

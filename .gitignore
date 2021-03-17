@@ -3,6 +3,7 @@
 *.pyc
 spark-warehouse/
 metastore_db/
+*.txt
 latest_hostname.txt
 latest_hostname.txt.old
 *.out

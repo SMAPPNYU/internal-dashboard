@@ -4,20 +4,6 @@
 # In[63]:
 
 
-# NOTE: only run this jupyter notebbook once, afterwards
-
-# A step-by-step guide to set up visualization dashboard to HPC
-
-# step 1: configure mysql
-# step 2: configure superset
-# step 3: load data into mysql
-# step 4: connect superset with mysql
-# step 5: write sql query and build your own dashboards!
-
-
-# In[68]:
-
-
 import os.path
 from os import path
 from pprint import pprint
@@ -185,11 +171,11 @@ else:
 print('init superset...')
 cmd = """cd {};
 singularity instance start --bind {}/superset-data:/app/superset_home --bind {}/superset_config.py:/etc/superset/superset_config.py  docker://apache/superset superset;
-singularity exec instance://superset superset fab create-admin --username {} --firstname Superset  --lastname Admin --email admin@superset.com --password {};
+singularity exec instance://superset superset fab create-admin --username admin --firstname Superset  --lastname Admin --email admin@superset.com --password admin;
 singularity exec instance://superset superset db upgrade;
 singularity exec instance://superset superset init;
 singularity instance stop superset
-""".format(DASHBOARD_DIRECTORY, DASHBOARD_DIRECTORY, DASHBOARD_DIRECTORY, DASHBOARD_USER, DASHBOARD_USER_PASSWORD)
+""".format(DASHBOARD_DIRECTORY, DASHBOARD_DIRECTORY, DASHBOARD_DIRECTORY)
 print(cmd)
 
 proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)

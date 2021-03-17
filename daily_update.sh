@@ -1,5 +1,5 @@
 #!/bin/bash
-#source /home/$USER/.bash_profile
+# source $HOME/.bash_profile
 
 cd /home/$USER/internal-dashboard
 
@@ -49,8 +49,14 @@ while [[ "$trials" -le 100 ]]; do
 
 done
 
-echo "latest hostname is ---->"
-echo $latest_hostname
+echo "========Important log in information =========="
+echo "First log out Greene, then log in with the following command"
+echo "ssh -L 8088:$latest_hostname:8088 $USER@log-1.hpc.nyu.edu" 
+echo "\n"
+echo "Then open your browser, and visit http://localhost:8088"
+echo "\n"
+echo "If there is any issue, you can contact Zhouhan Chen at zc1245@nyu.edu"
+echo "=============================="
 
 exit 0
 # NOTE: port forwarding is optional, because each port can only be assigned to one user
