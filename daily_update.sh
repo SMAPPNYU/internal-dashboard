@@ -35,15 +35,15 @@ trials=0
 while [[ "$trials" -le 100 ]]; do
 	if [[ $latest_hostname != *".nyu.cluster"* ]]
 	then
-      		echo "\$latest_hostname is empty"
+      		#echo "\$latest_hostname is empty"
       		sleep 5
       		latest_hostname=`cat latest_hostname.txt`
-		echo $latest_hostname
+		#echo $latest_hostname
 		((trails=trails+1))
-		echo $trails
+		#echo $trails
 	else
       
-		echo "\$latest_hostname is NOT empty"
+		#echo "\$latest_hostname is NOT empty"
 		break
 	fi
 
