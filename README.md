@@ -1,6 +1,6 @@
 ### How can this dashboard benefit my research?
 
-If your study social networks, chances are you might want to collect and visualize tweets related to a certain topic. Fortunately, CSMaP has access to Decahose, a 10% sample of all tweets.
+If you're studying social networks, chances are you might want to collect and visualize tweets related to a certain topic. Fortunately, CSMaP has access to Decahose, a 10% sample of all tweets.
 
 With minimal configuration, this repository first loads tweets related to a given keyword(s) from Decahose to a local MySQL database. It then sets up a dashboard using [Superset](https://superset.apache.org/). Users can then write custom SQL queries, create a variety of charts, and group charts together into a dashboard.
 
