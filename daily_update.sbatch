@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --job-name=cpu_jupyter
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=40
-#SBATCH --mem=80GB
-#SBATCH --time=126:00:00
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=40GB
+#SBATCH --time=26:00:00
 
 
 module purge
