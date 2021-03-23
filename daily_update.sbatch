@@ -3,7 +3,8 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=40
 #SBATCH --mem=80GB
-#SBATCH --time=26:00:00
+#SBATCH --time=126:00:00
+
 
 module purge
 
@@ -64,7 +65,8 @@ CONFIG_FILE=$1 nohup /share/apps/anaconda3/2020.02/bin/jupyter nbconvert --to no
 
 
 cd /home/$USER
-/share/apps/anaconda3/2020.02/bin/jupyter lab --no-browser --port $port
+export JUPYTERLAB_DIR=/scratch/zc1245/share_new2/
+/share/apps/anaconda3/2020.02/bin/jupyter-lab --no-browser --port $port
 
 
 :'
