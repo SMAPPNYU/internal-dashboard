@@ -21,7 +21,7 @@ _Note: If you encounter any problem during the set up, please contact Zhouhan, e
 5. `./init.sh config.json` (do not forget to type the first dot)
 6. Now we are ready to create our first dashboard
 
-### Connect to Superset (our dashboard tool)
+### Connect to Superset (the dashboard tool)
 
 1. The above steps schedule a background job that loads new tweets and updates Dashboard IP address every 24 hours. To create a dashboard instantly, we can run this command: `source $HOME/.bash_profile; cd /home/$USER/internal-dashboard && ./daily_update.sh config.json`
 2. Wait for a while, instructions to re-connect to HPC should be printed on the console (stdout)
@@ -30,7 +30,7 @@ _Note: If you encounter any problem during the set up, please contact Zhouhan, e
 4. Then log out HPC `exit`
 5. Log in HPC again with port forwarding, `ssh -L 8088:HOST:8088 netID@log-1.nyu.cluster`
 
-### Create the first dashboard
+### Create your first dashboard
 1. Open browser, visit http://localhost:8088/
 2. Enter default username (`admin`) and password (`admin`). Update the password for enhanced security.
 3. Go to http://localhost:8088/databaseview/list/, click "+DATABASE", connect with the following string 
