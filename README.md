@@ -4,7 +4,7 @@ If you're studying social networks, chances are you might want to collect and vi
 
 With minimal configuration, this repository first loads tweets related to a given keyword(s) from Decahose to a local MySQL database. It then sets up a dashboard using [Superset](https://superset.apache.org/). Users can then write custom SQL queries, create a variety of charts, and group charts together into a dashboard.
 
-Since new tweets are added every day, the system also schedules a background job that loads new tweets every 24 hours. The overall systetm architecture is shown below.
+Since new tweets are added every day, the system also schedules a background job that loads new tweets every 24 hours. The overall system architecture is shown below.
 
 This repository is intended as a starting point, so be creative. 
 
