@@ -57,6 +57,10 @@ if not os.path.exists(DASHBOARD_DIRECTORY + '/mysql/var'):
     os.makedirs(DASHBOARD_DIRECTORY + '/mysql/var')
 if not os.path.exists(DASHBOARD_DIRECTORY + '/mysql/tmp'):
     os.makedirs(DASHBOARD_DIRECTORY + '/mysql/tmp')
+    cmd = 'module purge; module load mysql/8.0.22; mysqld --initialize-insecure;'
+    print('[initialize mysqld]')
+    proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    proc.communicate()
 
 if not os.path.exists(DASHBOARD_DIRECTORY + '/superset-data'):
     os.makedirs(DASHBOARD_DIRECTORY + '/superset-data')
@@ -167,26 +171,18 @@ else:
 
 
 
-
-print('init superset...')
+print('init superset, this takes about 1 minute...')
 cmd = """cd {};
 singularity instance start --bind {}/superset-data:/app/superset_home --bind {}/superset_config.py:/etc/superset/superset_config.py  docker://apache/superset superset;
 singularity exec instance://superset superset fab create-admin --username admin --firstname Superset  --lastname Admin --email admin@superset.com --password admin;
 singularity exec instance://superset superset db upgrade;
 singularity exec instance://superset superset init;
-singularity instance stop superset
+singularity instance stop superset;
+echo 'done';
 """.format(DASHBOARD_DIRECTORY, DASHBOARD_DIRECTORY, DASHBOARD_DIRECTORY)
-print(cmd)
 
-proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-
-
-# cmd = 'mysql < {}'.format('{}/create_table.sql'.format(DASHBOARD_DIRECTORY))
-# proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-# print(proc.communicate()[0])
-
-
-# In[75]:
+proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+proc.communicate()
 
 
 CREATE_TABLE_SQL = """
@@ -319,6 +315,7 @@ if not os.path.exists('/home/{}/create_table.sql'.format(USER)):
     {}
     """.format('/home/{}/create_table.sql'.format(USER), CREATE_TABLE_SQL)
     proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    print('create_table.sql does not exist, write a new one...')
 else:
     print('create_table.sql already exists')
 

@@ -60,7 +60,7 @@ sleep 30
 cd /home/$USER/internal-dashboard/
 
 # TODO: add CONFIG_FILE as an additional argument, e.g.: NB_ARGS=some_args
-CONFIG_FILE=$1 nohup /share/apps/anaconda3/2020.02/bin/jupyter nbconvert --to notebook --inplace --ExecutePreprocessor.timeout=7200 --execute daily_update.ipynb &
+CONFIG_FILE=$1 nohup /share/apps/anaconda3/2020.02/bin/jupyter nbconvert --to notebook --ExecutePreprocessor.timeout=7200 --execute daily_update.ipynb &
 #nohup /share/apps/anaconda3/2020.02/bin/jupyter nbconvert --to notebook --inplace --ExecutePreprocessor.timeout=20000 --execute selenium_crawl_page.ipynb &
 
 

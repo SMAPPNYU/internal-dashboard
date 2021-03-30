@@ -41,7 +41,7 @@ _Note: If you encounter any problem during the set up, please contact Zhouhan, e
 1. Open browser, visit http://localhost:8088/
 2. Enter default username (`admin`) and password (`admin`). Update the password for enhanced security.
 3. Go to http://localhost:8088/databaseview/list/, click "+DATABASE", connect with the following string 
- > mysql://csmap_user:csmap@localhost:3306/tweet?read_default_file=~/.my.cnf
+ > mysql+pymysql://csmap_user:csmap@localhost:3306/tweet?read_default_file=~/.my.cnf
 4. Navigate to Chart page to create 20+ types of visualization: http://localhost:8088/chart/list/
 
 #### sample MySQL queries
