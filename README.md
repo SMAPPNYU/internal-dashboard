@@ -19,30 +19,39 @@ _Note: If you encounter any problem during the set up, please contact Zhouhan, e
 ![System architecture](img/system-architecture.png)
 
 
-### Initiate MySQL database and Superset
+### Step 1: Initiate MySQL database and Superset
 
 1. Log in HPC, then `cd /home/$USER`
 2. `git clone git@github.com:SMAPPNYU/internal-dashboard.git`
-3. `cd /home/$USER/internal-dashboard`
-4. Modify `config.json`, change keyword. You can leave other configurations as default. 
+3. `cd /home/$USER/internal-dashboard` (do not rename the directory)
+4. Modify `config.json`, change `KEYWORD` or `TABLE_NAME`. Leave other configurations as they are. Note: `KEYWORD` needs at least 2 words. 
 5. `./init.sh config.json` (do not forget to type the first dot)
-6. Now we are ready to create our first dashboard
+6. We are ready to create our first dashboard (go to Step 2-a)
 
-### Connect to Superset (the dashboard tool)
+__Tip: if you want to track other keywords, please create another config file (e.g.: config-vaccine.json, and issue `./init.sh config-vaccine.json`)__
 
-1. The above steps schedule a background job that loads new tweets and updates Dashboard IP address every 24 hours. To create a dashboard instantly, we can run this command: `source $HOME/.bash_profile; cd /home/$USER/internal-dashboard && ./daily_update.sh config.json`
-2. Wait for a while, instructions to re-connect to HPC should be printed on the console (stdout)
+### Step 2-a: Connect to a _new_ Superset dashboard
 
-3. Alternatively, if we want to connect to a dashboard when a schduled job is running, we can find the hostname HOST via `cat /home/$USER/decahose_visualization_setup/latest_hostname.txt`
-4. Then log out HPC `exit`
-5. Log in HPC again with port forwarding, `ssh -L 8088:HOST:8088 netID@log-1.nyu.cluster`
+1. Inside HPC log-in node, run command: `source $HOME/.bash_profile; cd /home/$USER/internal-dashboard && ./daily_update.sh config.json`
+2. Wait until the script finishes, follow instructions printed on the console (stdout)
+3. After re-connecting to HPC, proceed to Step 3
 
-### Create your first dashboard
+### Step 2-b: Connect to an _existing_ Superset dashboard
+1. `./init.sh config.json` schedule a background job that loads new tweets and hosts a new Dashboard on a new IP address every 24 hours.
+2. To connect to a dashboard from a running job, find the hostname YOUR_HOSTNAME via `cat /home/$USER/decahose_visualization_setup/latest_hostname.txt`
+3. Log out HPC `exit`
+4. Log in HPC again with port forwarding, `ssh -L 8088:YOUR_HOSTNAME:8088 YOUR_NETID@log-1.nyu.cluster`
+5. Proceed to Step 3
+
+__Tip: Inside the same HPC log-in node as Step 1, run `crontab -e`. You can delete the scheduled job if you prefer.__
+
+### Step 3: Create your first dashboard
 1. Open browser, visit http://localhost:8088/
-2. Enter default username (`admin`) and password (`admin`). Update the password for enhanced security.
+2. Enter default username (__`admin`__) and password (__`admin`__). Update the password for enhanced security.
 3. Go to http://localhost:8088/databaseview/list/, click "+DATABASE", connect with the following string 
  > mysql+pymysql://csmap_user:csmap@localhost:3306/tweet?read_default_file=~/.my.cnf
-4. Navigate to Chart page to create 20+ types of visualization: http://localhost:8088/chart/list/
+4. Once we connect to the database, add a dataset
+5. Navigate to Chart page to create 20+ types of visualization: http://localhost:8088/chart/list/
 
 #### sample MySQL queries
 
