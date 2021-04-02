@@ -16,7 +16,13 @@ A modern dashboard to explore and visualize tweets related to a topic of interes
 
 If you're studying social networks, chances are you might want to collect and visualize tweets related to a certain topic. Fortunately, CSMaP has access to Decahose, a 10% sample of all tweets!
 
-With minimal configuration, this repository first loads tweets related to a given keyword(s) from Decahose to a local MySQL database. It then sets up a dashboard using [Superset](https://superset.apache.org/). Users can then write custom SQL queries, create a variety of charts, and group charts together into a dashboard.
+With minimal configuration, this repository:
+* Loads tweets related to a given keyword(s) from Decahose to a local MySQL database
+* Sets up a [Superset](https://superset.apache.org/) dashboard 
+* Schedules a background job to load new tweets every 24 hours
+* Users can then explore tweets and create dashboard
+
+![System architecture](img/system-architecture.png)
 
 ## What questions can be answered?
  - How many tweets are related to a topic (e.g.: BLM, vaccine, election...)?
@@ -27,7 +33,6 @@ With minimal configuration, this repository first loads tweets related to a give
 
 Since new tweets are added every day, the system also schedules a background job that loads new tweets every 24 hours. The overall system architecture is shown below.
 
-![System architecture](img/system-architecture.png)
 
 
 ## Installation and Configuration
