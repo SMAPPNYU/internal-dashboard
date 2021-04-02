@@ -1,7 +1,7 @@
 CSMaP Internal Dashboard
 =========
 
-A modern dashboard to explore and visualize tweets related to topic of interest.
+A modern dashboard to explore and visualize tweets related to a topic of interest.
 
 [**Why use this dashboard**](#why-use-this-dashboard) |
 [**What questions can be answered**](#what-questions-can-be-answered) |
