@@ -9,7 +9,13 @@ A modern dashboard to explore and visualize tweets related to a topic of interes
 [**Example MySQL queries**](#example-mysql-queries) |
 [**Resources**](#resources) |
 
-![Sample dashboard layout](/img/decahose-covid-tweet-dashboard-example.pdf)
+<object data="https://github.com/SMAPPNYU/internal-dashboard/blob/main/img/decahose-covid-tweet-dashboard-example.pdf" type="application/pdf">
+    <embed src="https://github.com/SMAPPNYU/internal-dashboard/blob/main/img/decahose-covid-tweet-dashboard-example.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/SMAPPNYU/internal-dashboard/blob/main/img/decahose-covid-tweet-dashboard-example.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
+![Sample dashboard layout](https://github.com/SMAPPNYU/internal-dashboard/blob/main/img/decahose-covid-tweet-dashboard-example.png)
 
 ## Why use this dashboard?
 
