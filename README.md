@@ -9,7 +9,7 @@ A modern dashboard to explore and visualize tweets related to a topic of interes
 [**Example MySQL queries**](#example-mysql-queries) |
 [**Resources**](#resources) |
 
-![Sample dashboard layout](/img/decahose-covid-tweet-dashboard-example.png)
+![Sample dashboard layout](/img/decahose-covid-tweet-dashboard-example.pdf)
 
 ## Why use this dashboard?
 
